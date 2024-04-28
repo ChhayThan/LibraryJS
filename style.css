@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  font-size: 20px;
+}
+
+.header {
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.book {
+  border: solid 1px black;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 5px 3px 3px rgb(211, 211, 211);
+}
+
+input {
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  color: black;
+}
+
+form > input {
+  border: 1px solid black;
+}
+
+.popup-box {
+  width: 210px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  transform: scale(0);
+}
+
+.popup-box > form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-container {
+  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(95, 125, 84, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.popup-container.active {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.4s ease;
+}
+.popup-container.active .popup-box {
+  transform: scale(1);
+  transition: 0.4s ease;
+  transition-delay: 0.25s;
+}
+
+/* CSS */
+.add-button {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 0.375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: center;
+  line-height: 1.5;
+  padding: calc(0.5em - 1px) 1em;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.add-button:active {
+  border-color: #4a4a4a;
+  outline: 0;
+}
+
+.add-button:focus {
+  border-color: #485fc7;
+  outline: 0;
+}
+
+.add-button:hover {
+  border-color: #b5b5b5;
+}
+
+.add-button:focus:not(:active) {
+  box-shadow: rgba(72, 95, 199, 0.25) 0 0 0 0.125em;
+}
