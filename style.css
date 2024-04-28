@@ -21,6 +21,11 @@ main {
   gap: 50px;
 }
 
+.bookshelf {
+  display: flex;
+  gap: 50px;
+}
+
 .book {
   border: solid 1px black;
   border-radius: 10px;

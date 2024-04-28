@@ -8,9 +8,13 @@ showPopup.onclick = () => {
 };
 
 closeBtn.onclick = () => {
-  //   const bookInfo = Array.from(
-  //     document.querySelectorAll("#book-form input")
-  //   ).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
+  const book = Array.from(document.querySelectorAll("#book-form input")).reduce(
+    (acc, input) => ({ ...acc, [input.id]: input.value }),
+    {}
+  );
+
+  console.log(book);
+  addBookToLibrary(book.Author, book.title, book.Pages);
 
   popupContainer.classList.remove("active");
 };
@@ -43,22 +47,25 @@ function createBookCard(book) {
   const page = document.createElement("input");
 
   titleLabel.setAttribute("for", "title");
+  titleLabel.innerText = "Title:";
   title.setAttribute("type", "text");
   title.setAttribute("id", "title");
   title.setAttribute("value", `${book.title}`);
-  title.setAttribute("disabled");
+  title.disabled = true;
 
   authorLabel.setAttribute("for", "author");
+  authorLabel.innerText = "Author:";
   author.setAttribute("type", "text");
   author.setAttribute("id", "author");
   author.setAttribute("value", `${book.author}`);
-  author.setAttribute("disabled");
+  author.disabled = true;
 
   pageLabel.setAttribute("for", "pages");
+  pageLabel.innerText = "Pages:";
   page.setAttribute("type", "text");
   page.setAttribute("id", "pages");
   page.setAttribute("value", `${book.page}`);
-  page.setAttribute("disabled");
+  page.disabled = true;
 
   bookCard.appendChild(titleLabel);
   bookCard.appendChild(title);
