@@ -9,15 +9,15 @@
   <body>
     <div class="popup-container">
       <div class="popup-box">
-        <form>
+        <form id="book-form">
           <label for="title">Title:</label>
           <input type="text" id="title" />
           <label for="Author">Author:</label>
           <input type="text" id="Author" />
           <label for="Pages">Pages:</label>
           <input type="number" id="Pages" />
-          <input class="add-button close-tbn" type="submit" value="Submit" />
         </form>
+        <button class="add-button close-btn">Submit</button>
       </div>
     </div>
     <main>
@@ -36,10 +36,10 @@
             value="Harry Potter and the Philosopher's Stone"
             disabled
           />
-          <label for="Author">Author:</label>
-          <input type="text" id="Author" value="J.K. Rowling" disabled />
-          <label for="Pages">Pages:</label>
-          <input type="number" id="Pages" value="352" disabled />
+          <label for="author">Author:</label>
+          <input type="text" id="author" value="J.K. Rowling" disabled />
+          <label for="pages">Pages:</label>
+          <input type="number" id="pages" value="352" disabled />
         </div>
       </div>
     </main>

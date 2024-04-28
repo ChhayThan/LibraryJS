@@ -51,7 +51,7 @@ form > input {
   transform: scale(0);
 }
 
-.popup-box > form {
+.popup-box {
   display: flex;
   flex-direction: column;
   gap: 10px;
