@@ -24,6 +24,7 @@ main {
 .bookshelf {
   display: flex;
   gap: 50px;
+  flex-wrap: wrap;
 }
 
 .book {
