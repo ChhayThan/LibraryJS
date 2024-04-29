@@ -146,7 +146,3 @@ form > input {
   background-color: rgb(255, 83, 83);
   color: white;
 }
-
-input:disabled {
-  cursor: none;
-}
