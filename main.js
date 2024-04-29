@@ -51,10 +51,15 @@ function Book(author, title, page, hasRead) {
 function addBookToLibrary(author, title, page, hasRead) {
   const book = new Book(author, title, page, hasRead);
   myLibrary.push(book);
-  createBookCard(book);
+  createBookCard(book, myLibrary.length - 1);
 }
 
-function createBookCard(book) {
+function BookCard(book, index) {
+  this.book = book;
+  this.index = index;
+}
+
+function createBookCard(book, index) {
   const bookCard = document.createElement("div");
   bookCard.classList.add("book");
 
@@ -72,6 +77,9 @@ function createBookCard(book) {
   const switchSpan = document.createElement("span");
   const hasReadInput = document.createElement("input");
 
+  const editBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
+
   titleLabel.setAttribute("for", "title");
   titleLabel.innerText = "Title:";
   title.setAttribute("type", "text");
@@ -88,7 +96,7 @@ function createBookCard(book) {
 
   pageLabel.setAttribute("for", "pages");
   pageLabel.innerText = "Pages:";
-  page.setAttribute("type", "text");
+  page.setAttribute("type", "number");
   page.setAttribute("id", "pages");
   page.setAttribute("value", `${book.page}`);
   page.disabled = true;
@@ -102,6 +110,12 @@ function createBookCard(book) {
   hasReadInput.setAttribute("type", "checkbox");
   hasReadInput.setAttribute("id", "hasRead");
   hasReadInput.checked = book.hasRead === "on";
+  hasReadInput.disabled = true;
+
+  editBtn.classList.add("btn", "edit-btn");
+  editBtn.innerText = "Edit";
+  deleteBtn.classList.add("btn", "delete-btn");
+  deleteBtn.innerText = "Delete";
 
   bookCard.appendChild(titleLabel);
   bookCard.appendChild(title);
@@ -111,5 +125,61 @@ function createBookCard(book) {
   bookCard.appendChild(page);
   bookCard.appendChild(hasReadLabel);
   bookCard.appendChild(switchLabel);
+  bookCard.appendChild(editBtn);
+  bookCard.appendChild(deleteBtn);
+
+  bookCard.classList.add("data-index-number", `${index}`);
   bookshelf.appendChild(bookCard);
+
+  //   const editBtnSelector = document.querySelector(".edit-btn");
+  //   const deleteBtnSelector = document.querySelector(".delete-btn");
+
+  //   editBtnSelector.onclick = () => {
+  //   document.querySelectorAll(".book input").forEach((input) => {
+  //     if (input.disabled === true) {
+  //       input.disabled = false;
+  //       editBtnSelector.innerText = "Confirm Changes?";
+  //     } else {
+  //       editBtnSelector.innerText = "Edit";
+  //       input.disabled = true;
+  //     }
+  //   });
+  // };
+
+  // deleteBtnSelector.onclick = () => {
+  //   bookshelf.removeChild(deleteBtnSelector.parentNode);
+  // };
 }
+
+const exampleBook = new Book(
+  "J.K. Rowling",
+  "Harry Potter and the Philosopher's Stone",
+  "352",
+  "on"
+);
+
+addBookToLibrary(
+  exampleBook.author,
+  exampleBook.title,
+  exampleBook.page,
+  exampleBook.hasRead
+);
+
+// const editBtn = document.querySelector(".edit-btn");
+// const deleteBtn = document.querySelector(".delete-btn");
+
+// editBtn.onclick = () => {
+//   document.querySelectorAll(".book  input").forEach((input) => {
+//     if (input.disabled === true) {
+//       input.disabled = false;
+//       editBtn.innerText = "Confirm Changes?";
+//     } else {
+//       editBtn.innerText = "Edit";
+//       input.disabled = true;
+//     }
+//   });
+// };
+
+// deleteBtn.onclick = () => {
+//   bookshelf.removeChild(deleteBtn.parentNode);
+// };

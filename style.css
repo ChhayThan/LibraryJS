@@ -87,7 +87,7 @@ form > input {
 }
 
 /* CSS */
-.add-button {
+.btn {
   align-items: center;
   appearance: none;
   background-color: #fff;
@@ -114,21 +114,21 @@ form > input {
   white-space: nowrap;
 }
 
-.add-button:active {
+.btn:active {
   border-color: #4a4a4a;
   outline: 0;
 }
 
-.add-button:focus {
+.btn:focus {
   border-color: #485fc7;
   outline: 0;
 }
 
-.add-button:hover {
+.btn:hover {
   border-color: #b5b5b5;
 }
 
-.add-button:focus:not(:active) {
+.btn:focus:not(:active) {
   box-shadow: rgba(72, 95, 199, 0.25) 0 0 0 0.125em;
 }
 
@@ -192,5 +192,14 @@ input:checked + .slider:before {
 }
 
 .errorMessage {
-  color: red;
+  color: rgb(255, 83, 83);
+}
+
+.delete-btn {
+  background-color: rgb(255, 83, 83);
+  color: white;
+}
+
+input:disabled {
+  cursor: none;
 }
