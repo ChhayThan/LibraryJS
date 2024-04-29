@@ -165,6 +165,7 @@ function createBookCard(book, index) {
     bookshelf.removeChild(deleteBtnSelector.parentNode);
     let index = deleteBtnSelector.parentNode.getAttribute("data-index-number");
     myLibrary.splice(index, 1);
+    updateBookCount();
   };
 }
 
