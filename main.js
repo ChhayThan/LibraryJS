@@ -5,6 +5,8 @@ const closeBtn = document.querySelector(".close-btn");
 const bookshelf = document.querySelector(".bookshelf");
 const errorMessage = document.querySelector(".errorMessage");
 
+const bookCount = document.querySelector(".bookCount");
+
 showPopup.onclick = () => {
   popupContainer.classList.add("active");
 };
@@ -29,7 +31,6 @@ submitBtn.onclick = () => {
   } else {
     errorMessage.innerText = "";
   }
-  console.log(book);
   addBookToLibrary(book.Author, book.title, book.Pages, book.hasRead);
 
   document.querySelectorAll("#book-form input").forEach((input) => {
@@ -40,6 +41,11 @@ submitBtn.onclick = () => {
 };
 
 const myLibrary = [];
+
+function updateBookCount() {
+  let count = myLibrary.length;
+  bookCount.innerText = `Total Number of books: ${count}`;
+}
 
 function Book(author, title, page, hasRead) {
   this.author = author;
@@ -52,11 +58,7 @@ function addBookToLibrary(author, title, page, hasRead) {
   const book = new Book(author, title, page, hasRead);
   myLibrary.push(book);
   createBookCard(book, myLibrary.length - 1);
-}
-
-function BookCard(book, index) {
-  this.book = book;
-  this.index = index;
+  updateBookCount();
 }
 
 function createBookCard(book, index) {
@@ -141,16 +143,28 @@ function createBookCard(book, index) {
       .forEach((input) => {
         if (input.disabled === true) {
           input.disabled = false;
-          editBtnSelector.innerText = "Confirm Changes?";
+          editBtnSelector.innerText = "Confirm";
         } else {
           editBtnSelector.innerText = "Edit";
           input.disabled = true;
+          myLibrary[index].author = author.value;
+          myLibrary[index].title = title.value;
+          myLibrary[index].page = page.value;
+          if (hasReadInput.value === "on") {
+            myLibrary[index].hasRead = "on";
+          } else {
+            myLibrary[index].hasRead = "";
+          }
         }
       });
+
+    console.log(myLibrary);
   };
 
   deleteBtnSelector.onclick = () => {
     bookshelf.removeChild(deleteBtnSelector.parentNode);
+    let index = deleteBtnSelector.parentNode.getAttribute("data-index-number");
+    myLibrary.splice(index, 1);
   };
 }
 
@@ -167,22 +181,3 @@ addBookToLibrary(
   exampleBook.page,
   exampleBook.hasRead
 );
-
-// const editBtn = document.querySelector(".edit-btn");
-// const deleteBtn = document.querySelector(".delete-btn");
-
-// editBtn.onclick = () => {
-//   document.querySelectorAll(".book  input").forEach((input) => {
-//     if (input.disabled === true) {
-//       input.disabled = false;
-//       editBtn.innerText = "Confirm Changes?";
-//     } else {
-//       editBtn.innerText = "Edit";
-//       input.disabled = true;
-//     }
-//   });
-// };
-
-// deleteBtn.onclick = () => {
-//   bookshelf.removeChild(deleteBtn.parentNode);
-// };
