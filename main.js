@@ -72,7 +72,6 @@ function createBookCard(book, index) {
   const pageLabel = document.createElement("label");
   const page = document.createElement("input");
 
-  const hasReadLabel = document.createElement("label");
   const switchLabel = document.createElement("label");
   const switchSpan = document.createElement("span");
   const hasReadInput = document.createElement("input");
@@ -101,8 +100,7 @@ function createBookCard(book, index) {
   page.setAttribute("value", `${book.page}`);
   page.disabled = true;
 
-  hasReadLabel.setAttribute("for", "hasRead");
-  hasReadLabel.innerText = "Read Status:";
+  switchLabel.innerText = "Read Status:  ";
   switchLabel.classList.add("switch");
   switchLabel.appendChild(hasReadInput);
   switchLabel.appendChild(switchSpan);
@@ -123,32 +121,37 @@ function createBookCard(book, index) {
   bookCard.appendChild(author);
   bookCard.appendChild(pageLabel);
   bookCard.appendChild(page);
-  bookCard.appendChild(hasReadLabel);
   bookCard.appendChild(switchLabel);
   bookCard.appendChild(editBtn);
   bookCard.appendChild(deleteBtn);
 
-  bookCard.classList.add("data-index-number", `${index}`);
+  bookCard.setAttribute("data-index-number", `${index}`);
   bookshelf.appendChild(bookCard);
 
-  //   const editBtnSelector = document.querySelector(".edit-btn");
-  //   const deleteBtnSelector = document.querySelector(".delete-btn");
+  const editBtnSelector = document.querySelector(
+    `[data-index-number='${index}'] .edit-btn`
+  );
+  const deleteBtnSelector = document.querySelector(
+    `[data-index-number='${index}'] .delete-btn`
+  );
 
-  //   editBtnSelector.onclick = () => {
-  //   document.querySelectorAll(".book input").forEach((input) => {
-  //     if (input.disabled === true) {
-  //       input.disabled = false;
-  //       editBtnSelector.innerText = "Confirm Changes?";
-  //     } else {
-  //       editBtnSelector.innerText = "Edit";
-  //       input.disabled = true;
-  //     }
-  //   });
-  // };
+  editBtnSelector.onclick = () => {
+    document
+      .querySelectorAll(`[data-index-number='${index}'] input`)
+      .forEach((input) => {
+        if (input.disabled === true) {
+          input.disabled = false;
+          editBtnSelector.innerText = "Confirm Changes?";
+        } else {
+          editBtnSelector.innerText = "Edit";
+          input.disabled = true;
+        }
+      });
+  };
 
-  // deleteBtnSelector.onclick = () => {
-  //   bookshelf.removeChild(deleteBtnSelector.parentNode);
-  // };
+  deleteBtnSelector.onclick = () => {
+    bookshelf.removeChild(deleteBtnSelector.parentNode);
+  };
 }
 
 const exampleBook = new Book(
