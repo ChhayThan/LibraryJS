@@ -47,11 +47,45 @@ function updateBookCount() {
   bookCount.innerText = `Total Number of books: ${count}`;
 }
 
-function Book(author, title, page, hasRead) {
-  this.author = author;
-  this.title = title;
-  this.page = page;
-  this.hasRead = hasRead;
+class Book {
+  constructor(author, title, page, hasRead) {
+    this._author = author;
+    this._title = title;
+    this._page = page;
+    this._hasRead = hasRead;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(author) {
+    this._author = author;
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(title) {
+    this._title = title;
+  }
+
+  get page() {
+    return this._page;
+  }
+
+  set page(page) {
+    this._page = page;
+  }
+
+  get hasRead() {
+    return this._hasRead;
+  }
+
+  set hasRead(hasRead) {
+    this._hasRead = hasRead;
+  }
 }
 
 function addBookToLibrary(author, title, page, hasRead) {
